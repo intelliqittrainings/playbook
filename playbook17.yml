@@ -1,0 +1,21 @@
+---
+- name: Error Handling 
+  hosts: all
+  tasks:
+   - block:
+      - name: Instal tomcat8
+        apt:
+         name: tomcat8
+         state: present
+         update_cache: yes
+     rescue:
+      - name: Install tomcat9
+        apt:
+         name: tomcat9
+         state: present
+         update_cache: yes
+     always:
+      - name: Dispaly some msg
+        debug:
+         msg: "Apache isntallation successfull"
+

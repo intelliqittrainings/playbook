@@ -1,0 +1,25 @@
+---
+- name: Configuring Apache2
+  hosts: all
+  tasks:
+   - name: Install apache2
+     apt:
+      name: apache2
+      state: present
+   - name: Edit the idnex.html file
+     copy:
+      content: "Intelliqit Homw Page"
+      dest: /var/www/html/index.html
+   - name: Restart apache2
+     service:
+      name: apache2
+      state: restarted
+   - name: Check url response for server1
+     uri:
+      url: http://172.31.2.201
+      status_code: 200
+   - name: Check url response for server2
+     uri:
+      url: http://172.31.9.139
+      status_code: 200
+...      

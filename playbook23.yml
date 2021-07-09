@@ -1,0 +1,9 @@
+---
+- name: Capture info about tomcat
+  hosts: all
+  tasks:
+   - name: Capture info
+     service_facts:
+   - debug:
+      var: ansible_facts.services
+
